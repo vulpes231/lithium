@@ -24,7 +24,7 @@ const Footer = () => {
             lithium <span className="text-green-600">finance</span>
           </h3>
         </div>
-        <small className="font-light">
+        <small className="font-light text-slate-400">
           Trading involves a substantial risk of incurring rapid financial
           losses due to the utilization of leverage. It is imperative to
           acknowledge that 75% of individual investors experience monetary
@@ -42,7 +42,7 @@ const Footer = () => {
           <p className="text-sm font-normal ">
             &copy; 2024, All Rights Reserved
           </p>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 capitalize font-light text-sm">
             <MdEditDocument />
             <p>legal documents</p>
           </span>

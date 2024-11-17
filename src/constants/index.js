@@ -2,18 +2,22 @@ const navLinks = [
   {
     id: "home",
     name: "home",
+    path: "/",
   },
   {
     id: "plans",
     name: "plans",
+    path: "/plans",
   },
   {
     id: "products",
     name: "products",
+    path: "/products",
   },
   {
     id: "about us",
     name: "about us",
+    path: "/about",
   },
 ];
 

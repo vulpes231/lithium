@@ -72,7 +72,7 @@ const Trader = () => {
                 {feat.content}
               </p>
               <span>
-                <button className="border border-green-600 px-8 py-3 rounded-3xl">
+                <button className="border border-green-600 px-8 py-3 rounded-3xl capitalize">
                   learn more
                 </button>
               </span>

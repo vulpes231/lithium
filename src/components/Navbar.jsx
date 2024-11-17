@@ -26,7 +26,7 @@ const Navbar = () => {
         <Logo />
         <div className="hidden md:flex items-center gap-6 capitalize">
           {navLinks.map((link) => {
-            return <Link key={link.id}>{link.name}</Link>;
+            return <Link to={link.path} key={link.id}>{link.name}</Link>;
           })}
         </div>
         <div className="hidden md:flex items-center gap-4">

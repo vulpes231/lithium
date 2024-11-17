@@ -15,6 +15,8 @@ import {
 import { Authnav, Footer, Navbar } from "./components";
 import { getAccessToken } from "./utils/utils";
 import Notification from "./pages/Notification";
+import About from "./pages/About";
+import Plans from "./pages/Plans";
 
 const App = () => {
   const navigate = useNavigate();
@@ -49,6 +51,8 @@ const App = () => {
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/plans" element={<Plans />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/complete/:fee" element={<Fee />} />

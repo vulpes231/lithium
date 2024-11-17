@@ -10,6 +10,8 @@ import xrp from "./xrp.png";
 import userProfile from "./user.png";
 import pay from "./pay.jpeg";
 import mt4 from "./mt.png";
+import tradeone from "./tradeone.png";
+import tradetwo from "./tradetwo.jpg";
 
 export {
   logo,
@@ -24,4 +26,6 @@ export {
   userProfile,
   pay,
   mt4,
+  tradeone,
+  tradetwo,
 };
