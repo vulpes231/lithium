@@ -28,7 +28,7 @@ const Coinmarquee = () => {
 
   return (
     <div className="bg-slate-950 w-full flex items-center text-sm border border-slate-800">
-      <div className="py-2 px-4 border-r border-r-slate-800 w-[15%]">
+      <div className="py-2 px-4 border-r border-r-slate-800 w-[40%] sm:w-[15%]">
         <h3>Powered by</h3>
         <span className="flex gap-1 items-center">
           <SiCoinmarketcap /> CoinMarketCap
@@ -47,7 +47,7 @@ const Coinmarquee = () => {
             return (
               <div
                 key={coin.name}
-                className="flex items-center gap-8 w-full border-r border-l border-slate-800 px-2"
+                className="flex items-center gap-16 w-full border-r border-l border-slate-800 px-4"
               >
                 <span className="flex items-center gap-1">
                   <img src={coin.img} alt={`${coin.name} logo`} width={25} />

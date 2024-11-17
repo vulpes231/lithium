@@ -21,8 +21,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 p-3 w-full h-[80px] flex items-center justify-center font-[Poppins] z-50 bg-white">
-      <nav className="md:max-w-[1000px] md:mx-auto flex items-center justify-between w-full">
+    <header className="fixed top-0 p-3 w-full h-[80px] flex items-center justify-center font-[Poppins] z-50 bg-slate-950 text-white">
+      <nav className="md:max-w-[1100px] md:mx-auto flex items-center justify-between w-full">
         <Logo />
         <div className="hidden md:flex items-center gap-6 capitalize">
           {navLinks.map((link) => {

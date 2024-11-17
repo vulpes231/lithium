@@ -7,11 +7,11 @@ const Mobilemenu = ({ toggle, styles, close }) => {
     <div
       className={
         toggle
-          ? "absolute top-[62px] right-0 w-[250px] bg-white shadow-xl p-6 md:hidden rounded-sm"
+          ? "absolute top-[62px] right-0 w-[250px] bg-slate-950 text-white shadow-xl p-6 md:hidden rounded-sm"
           : "hidden"
       }
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 capitalize">
         {navLinks.map((link) => {
           return (
             <Link

@@ -1,34 +1,54 @@
 import React from "react";
 import { FaInstagram, FaTelegram, FaTwitter } from "react-icons/fa6";
 import { logo } from "../assets";
-import { MdOutlinePhonelink, MdPhone } from "react-icons/md";
+import { MdEditDocument, MdOutlinePhonelink, MdPhone } from "react-icons/md";
 import { getAccessToken } from "../utils/utils";
 
 const Footer = () => {
   const accessToken = getAccessToken();
   return (
-    <div
-      className={`flex flex-col gap-2 items-center md:justify-center font-[Poppins] p-6 ${
+    <footer
+      className={`font-[Poppins] p-6 bg-slate-950 text-white ${
         accessToken && "hidden"
       }`}
     >
-      <div className="flex items-center gap-2">
-        <img src={logo} alt="" width={20} />
-        <h3 className="uppercase font-bold">coinxtra</h3>
+      <div className="flex flex-col gap-10 lg:max-w-[1100px] lg:mx-auto">
+        <div className="flex items-center gap-2">
+          <img
+            src={logo}
+            alt=""
+            width={20}
+            className="w-[20px] md:w-[40px] lg:w-[50px]"
+          />
+          <h3 className="uppercase font-bold text-lg md:text-xl lg:text-2xl">
+            lithium <span className="text-green-600">finance</span>
+          </h3>
+        </div>
+        <small className="font-light">
+          Trading involves a substantial risk of incurring rapid financial
+          losses due to the utilization of leverage. It is imperative to
+          acknowledge that 75% of individual investors experience monetary
+          losses during their trading activities. Prior to commencing any
+          trading endeavors, it is essential to acquire a comprehensive
+          comprehension of its mechanisms and evaluate whether you possess the
+          financial capacity to withstand potential losses. Being cognizant of
+          all the risks associated with trading and our diverse range of
+          products is of utmost importance. In case of uncertainty, seeking
+          guidance from an impartial advisor is always advisable. It is crucial
+          to remember that previous performance does not guarantee future
+          outcomes.
+        </small>
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-normal ">
+            &copy; 2024, All Rights Reserved
+          </p>
+          <span className="flex items-center gap-1">
+            <MdEditDocument />
+            <p>legal documents</p>
+          </span>
+        </div>
       </div>
-      <p className="text-sm font-normal ">&copy; 2024, All Rights Reserved</p>
-      <span className="flex gap-3 items-center">
-        <FaTelegram />
-        <FaTwitter />
-        <FaInstagram />
-      </span>
-      <span className="flex flex-col gap-2">
-        <span className="flex items-center gap-1">
-          <MdOutlinePhonelink />
-          <small>+1234567890</small>
-        </span>
-      </span>
-    </div>
+    </footer>
   );
 };
 

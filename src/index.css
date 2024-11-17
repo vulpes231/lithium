@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 .myImage {
-  background-image: url("../cxbg.jpg");
+  background-image: url("../trade.jpg");
   background-size: 200%;
   background-repeat: no-repeat;
   background-position: center;
