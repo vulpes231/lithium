@@ -7,9 +7,10 @@
 
 .myImage {
   background-image: url("../cxbg.jpg");
-  background-size: 100%;
-  background-position: cover;
+  background-size: 200%;
   background-repeat: no-repeat;
+  background-position: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .customHeight {

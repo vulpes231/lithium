@@ -16,7 +16,7 @@ const Mobilemenu = ({ toggle, styles, close }) => {
           return (
             <Link
               onClick={close}
-              className="active:text-yellow-600"
+              className="active:text-green-600"
               key={link.id}
             >
               {link.name}
@@ -26,7 +26,7 @@ const Mobilemenu = ({ toggle, styles, close }) => {
         <div className="flex flex-col gap-5">
           <Link
             to={"/register"}
-            className={`${styles.button} bg-yellow-600 text-white`}
+            className={`${styles.button} bg-green-600 text-white`}
             onClick={close}
           >
             sign up
@@ -34,7 +34,7 @@ const Mobilemenu = ({ toggle, styles, close }) => {
           <Link
             to={"/login"}
             onClick={close}
-            className={`${styles.button} border-2 border-yellow-600 hover:border-none hover:bg-yellow-600 hover:text-white`}
+            className={`${styles.button} border-2 border-green-600 hover:border-none hover:bg-green-600 hover:text-white`}
           >
             sign in
           </Link>

@@ -18,7 +18,7 @@ const Logo = () => {
     <button onClick={goToHome} to={"/"} className="flex items-center">
       <img src={logo} alt="" width={30} />
       <h1 className="uppercase font-bold ">
-        coin <span className="text-yellow-600">xtra</span>
+        lithium <span className="text-green-600">finance</span>
       </h1>
     </button>
   );

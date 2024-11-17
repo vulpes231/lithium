@@ -20,14 +20,11 @@ const Navbar = () => {
     setToggle(false);
   };
 
-  useEffect(() => {
-    document.title = "CoinXtra - Signin";
-  }, []);
   return (
-    <header className="fixed top-0 p-3 w-full h-[60px] flex items-center justify-center font-[Poppins] z-50 bg-white">
-      <nav className="md:max-w-[900px] md:mx-auto flex items-center justify-between w-full">
+    <header className="fixed top-0 p-3 w-full h-[80px] flex items-center justify-center font-[Poppins] z-50 bg-white">
+      <nav className="md:max-w-[1000px] md:mx-auto flex items-center justify-between w-full">
         <Logo />
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6 capitalize">
           {navLinks.map((link) => {
             return <Link key={link.id}>{link.name}</Link>;
           })}
@@ -35,15 +32,15 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           <Link
             to={"/register"}
-            className={`${styles.button} bg-yellow-600 text-white`}
+            className={`${styles.button} bg-green-600 text-white`}
           >
-            sign up
+            register
           </Link>
           <Link
             to={"/login"}
-            className={`${styles.button} border-2 border-yellow-600 hover:border-none hover:bg-yellow-600 hover:text-white`}
+            className={`${styles.button} border-2 border-green-600 hover:border-none hover:bg-green-600 hover:text-white text-green-600`}
           >
-            sign in
+            login
           </Link>
         </div>
         <span onClick={handleToggle} className="md:hidden text-xl font-medium">
