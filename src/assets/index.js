@@ -9,5 +9,19 @@ import tron from "./tron.png";
 import xrp from "./xrp.png";
 import userProfile from "./user.png";
 import pay from "./pay.jpeg";
+import mt4 from "./mt.png";
 
-export { logo, btc, bnb, doge, eth, ltc, usdt, tron, xrp, userProfile, pay };
+export {
+  logo,
+  btc,
+  bnb,
+  doge,
+  eth,
+  ltc,
+  usdt,
+  tron,
+  xrp,
+  userProfile,
+  pay,
+  mt4,
+};
