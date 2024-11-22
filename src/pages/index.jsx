@@ -3,6 +3,8 @@ import Deposit from "./Deposit";
 import Faq from "./Faq";
 import Fee from "./Fee";
 import Landing from "./Landing";
+import Otp from "./Otp";
+import Personal from "./Personal";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import Signin from "./Signin";
@@ -20,4 +22,6 @@ export {
   Profile,
   Faq,
   Fee,
+  Otp,
+  Personal,
 };

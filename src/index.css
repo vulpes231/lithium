@@ -19,3 +19,16 @@
 .customh {
   height: calc(100vh - 70px);
 }
+
+label {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  label {
+    text-transform: capitalize;
+    font-size: 0.9rem;
+  }
+}

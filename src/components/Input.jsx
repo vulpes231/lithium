@@ -8,7 +8,7 @@ const Input = ({ name, placeholder, value, onchange, type }) => {
       value={value}
       onChange={onchange}
       name={name}
-      className="border-2 outline-none focus:border-none focus:outline-yellow-600 w-full rounded-3xl pl-10 pr-5 py-2 placeholder:text-xs "
+      className="border-2 outline-none focus:border-none focus:outline-green-600 w-full rounded-sm p-2 placeholder:text-xs "
     />
   );
 };

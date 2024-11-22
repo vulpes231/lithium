@@ -6,6 +6,8 @@ import {
   Faq,
   Fee,
   Landing,
+  Otp,
+  Personal,
   Profile,
   Settings,
   Signin,
@@ -42,11 +44,13 @@ const App = () => {
 
   return (
     <div>
-      {!token ? <Navbar /> : <Authnav />}
+      {/* {!token ? <Navbar /> : <Authnav />} */}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/register" element={<Signup />} />
+        <Route path="/verifyotp" element={<Otp />} />
+        <Route path="/completeprofile" element={<Personal />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/withdraw" element={<Withdraw />} />
@@ -58,7 +62,6 @@ const App = () => {
         <Route path="/complete/:fee" element={<Fee />} />
         <Route path="/notification/:id" element={<Notification />} />
       </Routes>
-      <Footer />
     </div>
   );
 };
