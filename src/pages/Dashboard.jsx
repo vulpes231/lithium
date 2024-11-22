@@ -1,30 +1,23 @@
-import React, { useEffect } from "react";
-import { Dashcontent, Sidebar } from "../components";
-import { getAccessToken } from "../utils/utils";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../features/userSlice";
+import React, { useEffect, useState } from "react";
+import { Authnav, Dashcontent, Sidebar } from "../components";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const accessToken = getAccessToken();
+  const [toggle, setToggle] = useState(false);
 
-  const { user } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (accessToken) {
-      dispatch(getUser());
-    }
-  }, [accessToken]);
+  const handleToggle = () => {
+    console.log("toggled");
+    setToggle((prev) => !prev);
+  };
 
   useEffect(() => {
-    document.title = "CoinXtra - Dashboard";
+    document.title = "Lithium Finance - Dashboard";
   });
-
   return (
-    <section className="min-h-screen bg-slate-100 w-full mb-10 ">
-      <div className="flex min-h-full mt-[66px]">
-        <Sidebar />
-        <Dashcontent user={user} />
+    <section className="relative min-h-screen bg-slate-100 w-full mb-10 font-[Poppins]">
+      <Authnav toggle={toggle} handleToggle={handleToggle} />
+      <div className="flex">
+        <Sidebar toggle={toggle} handleToggle={handleToggle} />
+        <Dashcontent />
       </div>
     </section>
   );

@@ -14,11 +14,15 @@ import Topup from "./Topup";
 import Deposithistory from "./Deposithistory";
 import Dashwallet from "./Dashwallet";
 import Editmodal from "./Editmodal";
+import Walletinfo from "./dash/Walletinfo";
+import Sidebarlinks from "./dash/Sidebarlinks";
 
 export {
   Authnav,
+  Sidebarlinks,
   Editmodal,
   Dashwallet,
+  Walletinfo,
   Deposithistory,
   Navbar,
   Coincard,
