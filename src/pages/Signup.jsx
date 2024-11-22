@@ -16,10 +16,10 @@ const Signup = () => {
   const [form, setForm] = useState({
     username: "",
     email: "",
+    country: "",
     phone: "",
     password: "",
     confirmPassword: "",
-    country: "",
   });
 
   const [error, setError] = useState(false);
@@ -39,11 +39,15 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    if (!form.password || !form.username || !form.email || !form.pin) {
+    if (!form.password || !form.username || !form.email || !form.country) {
       setError("Required fields cannot be empty!");
       return;
     }
-    dispatch(registerUser(form));
+    if (form.password !== form.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+    // dispatch(registerUser(form));
   };
 
   useEffect(() => {
@@ -69,7 +73,7 @@ const Signup = () => {
       timeout = 2000;
       setTimeout(() => {
         resetRegister();
-        navigate("/login");
+        navigate("/verifyotp");
       }, timeout);
     }
     return () => clearTimeout(timeout);
@@ -79,11 +83,11 @@ const Signup = () => {
     document.title = "Lithium Finance - Register";
   }, []);
   return (
-    <section className="customHeight bg-slate-100 p-10">
+    <section className="customHeight bg-slate-100 p-10 font-[Poppins]">
       <div className="flex items-center justify-center pb-5">
         <Logo />
       </div>
-      <form className="md:max-w-[500px] bg-white md:mx-auto p-6 md:p-10 flex flex-col gap-4 shadow-xl rounded-xl">
+      <form className="md:max-w-[500px] bg-white md:mx-auto p-6 md:p-10 flex flex-col gap-4 shadow-sm rounded-sm">
         <div className="flex flex-col gap-3">
           <h3 className="capitalize font-bold text-lg">create an account</h3>
           <small className="font-light text-slate-500">
@@ -111,9 +115,12 @@ const Signup = () => {
           <div className={`${styles.formDiv} w-full`}>
             <label htmlFor="">country</label>
             <select
-              name=""
-              class="border-2 outline-none focus:border-none focus:outline-green-600 w-full rounded-sm p-2 placeholder:text-xs bg-transparent"
+              name="country"
+              value={form.country}
+              onChange={handleInput}
+              className="font-light text-sm border-2 outline-none focus:border-none focus:outline-green-600 w-full rounded-sm p-2 placeholder:text-xs bg-white text-slate-800"
             >
+              <option value="">Select Country</option>
               <option value="united kingdom">United Kingdom</option>
               <option value="USA">USA</option>
               <option value="france">France</option>
@@ -144,10 +151,10 @@ const Signup = () => {
         <div className={styles.formDiv}>
           <label htmlFor="">confirm password</label>
           <Input
-            type={"text"}
+            type={"password"}
             value={form.confirmPassword}
             onchange={handleInput}
-            name={"confirm password"}
+            name={"confirmPassword"}
           />
         </div>
 

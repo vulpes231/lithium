@@ -1,5 +1,6 @@
 import React from "react";
 import { tradeone, tradetwo } from "../assets";
+import { Footer, Navbar } from "../components";
 
 const Aboutcard = ({ title, content, customClass, img }) => {
   return (
@@ -21,8 +22,9 @@ const Aboutcard = ({ title, content, customClass, img }) => {
 
 const About = () => {
   return (
-    <section className="min-h-screen bg-slate-900 text-[#fff] mt-20 font-[Poppins]">
-      <div className="lg:max-w-[1100px] lg:mx-auto p-20 flex flex-col gap-10">
+    <section className="min-h-screen bg-slate-900 text-[#fff]  font-[Poppins]">
+      <Navbar />
+      <div className="lg:max-w-[1100px] lg:mx-auto p-20 flex flex-col gap-10 mt-20">
         <h3 className="text-2xl lg:text-4xl text-center uppercase font-bold">
           about us
         </h3>
@@ -51,6 +53,7 @@ const About = () => {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 };

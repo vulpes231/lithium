@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer, Navbar } from "../components";
 
 const myPlans = [
   {
@@ -90,8 +91,9 @@ const Plans = () => {
   ];
 
   return (
-    <section className="bg-slate-800 min-h-screen mt-20 text-white">
-      <div className="lg:max-w-[1100px] lg:mx-auto p-6 overflow-auto">
+    <section className="bg-slate-800 min-h-screen text-white">
+      <Navbar />
+      <div className="lg:max-w-[1100px] lg:mx-auto p-6 overflow-auto mt-20">
         <table className="min-w-full border-collapse border border-slate-700 text-sm">
           <thead className="bg-green-600 capitalize">
             <tr>
@@ -140,6 +142,7 @@ const Plans = () => {
           </tbody>
         </table>
       </div>
+      <Footer />
     </section>
   );
 };
