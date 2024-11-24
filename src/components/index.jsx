@@ -16,9 +16,13 @@ import Dashwallet from "./Dashwallet";
 import Editmodal from "./Editmodal";
 import Walletinfo from "./dash/Walletinfo";
 import Sidebarlinks from "./dash/Sidebarlinks";
+import Notifications from "./dash/Notifications";
+import Analytics from "./dash/Analytics";
 
 export {
   Authnav,
+  Analytics,
+  Notifications,
   Sidebarlinks,
   Editmodal,
   Dashwallet,

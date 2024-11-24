@@ -13,9 +13,9 @@ const Dashboard = () => {
     document.title = "Lithium Finance - Dashboard";
   });
   return (
-    <section className="relative min-h-screen bg-slate-100 w-full mb-10 font-[Poppins]">
+    <section className="relative min-h-screen bg-slate-100 w-full font-[Poppins]">
       <Authnav toggle={toggle} handleToggle={handleToggle} />
-      <div className="flex">
+      <div className="flex h-full">
         <Sidebar toggle={toggle} handleToggle={handleToggle} />
         <Dashcontent />
       </div>
