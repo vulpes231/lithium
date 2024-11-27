@@ -5,13 +5,13 @@ import axios from "axios";
 const initialState = {
   registerLoading: false,
   registerError: false,
-  userRegistered: false,
+  accessToken: null,
 };
 
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (formData) => {
-    const url = `${liveServer}/signup`;
+    const url = `${devServer}/signup`;
     try {
       const response = await axios.post(url, formData, {
         headers: {
@@ -34,7 +34,7 @@ const registerSlice = createSlice({
     resetRegister(state) {
       state.registerLoading = false;
       state.registerError = false;
-      state.userRegistered = false;
+      state.accessToken = null;
     },
   },
   extraReducers: (builder) => {
@@ -42,15 +42,15 @@ const registerSlice = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.registerLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state) => {
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.registerLoading = false;
         state.registerError = false;
-        state.userRegistered = true;
+        state.accessToken = action.payload.accessToken;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.registerLoading = false;
         state.registerError = action.error.message;
-        state.userRegistered = false;
+        state.accessToken = null;
       });
   },
 });

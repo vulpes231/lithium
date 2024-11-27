@@ -24,7 +24,7 @@ const Signup = () => {
 
   const [error, setError] = useState(false);
 
-  const { registerLoading, registerError, userRegistered } = useSelector(
+  const { registerLoading, registerError, accessToken } = useSelector(
     (state) => state.register
   );
 
@@ -47,7 +47,7 @@ const Signup = () => {
       setError("Passwords do not match!");
       return;
     }
-    // dispatch(registerUser(form));
+    dispatch(registerUser(form));
   };
 
   useEffect(() => {
@@ -69,15 +69,17 @@ const Signup = () => {
 
   useEffect(() => {
     let timeout;
-    if (userRegistered) {
+    if (accessToken) {
       timeout = 2000;
       setTimeout(() => {
-        resetRegister();
+        const token = JSON.stringify(accessToken);
+        sessionStorage.setItem("accessToken", token);
+        resetLogin();
         navigate("/verifyotp");
       }, timeout);
     }
     return () => clearTimeout(timeout);
-  }, [userRegistered]);
+  }, [accessToken]);
 
   useEffect(() => {
     document.title = "Lithium Finance - Register";

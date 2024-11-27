@@ -1,12 +1,12 @@
 import Dashboard from "./Dashboard";
 import Deposit from "./Deposit";
-import Faq from "./Faq";
+
 import Fee from "./Fee";
 import Landing from "./Landing";
 import Otp from "./Otp";
 import Personal from "./Personal";
 import Profile from "./Profile";
-import Settings from "./Settings";
+
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Withdraw from "./Withdraw";
@@ -17,10 +17,8 @@ export {
   Signup,
   Dashboard,
   Deposit,
-  Settings,
   Withdraw,
   Profile,
-  Faq,
   Fee,
   Otp,
   Personal,

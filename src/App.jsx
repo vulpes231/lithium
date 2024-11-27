@@ -3,13 +3,11 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   Dashboard,
   Deposit,
-  Faq,
   Fee,
   Landing,
   Otp,
   Personal,
   Profile,
-  Settings,
   Signin,
   Signup,
   Withdraw,
@@ -54,10 +52,10 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/withdraw" element={<Withdraw />} />
-        <Route path="/settings" element={<Settings />} />
+
         <Route path="/about" element={<About />} />
         <Route path="/plans" element={<Plans />} />
-        <Route path="/faq" element={<Faq />} />
+
         <Route path="/profile" element={<Profile />} />
         <Route path="/complete/:fee" element={<Fee />} />
         <Route path="/notification/:id" element={<Notification />} />
