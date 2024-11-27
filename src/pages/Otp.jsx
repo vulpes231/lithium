@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetMailVerify,
+  resetSendCode,
+  sendMailCode,
+  verifyEmail,
+} from "../features/verifySlice";
 
 const styles = {
   input: "bg-zinc-300 w-12 h-12 text-center text-lg font-medium",
@@ -20,7 +26,17 @@ const Otp = () => {
     otp6: "",
   });
   const [error, setError] = useState("");
-  const email = sessionStorage.getItem("email");
+
+  const {
+    emailOtp,
+    emailCodeError,
+    emailCodeLoading,
+    verifyMailError,
+    verifyMailLoading,
+    emailVerified,
+  } = useSelector((state) => state.verify);
+
+  const { user } = useSelector((state) => state.user);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -48,12 +64,57 @@ const Otp = () => {
     }
 
     const otpString = otpValues.join("");
-    console.log("OTP Submitted:", otpString);
+
+    const userOtp = parseInt(otpString);
+
+    if (userOtp !== emailOtp) {
+      setError("Invalid OTP code.");
+      return;
+    }
+
+    const data = {
+      otp: userOtp,
+      original: emailOtp,
+    };
+
+    dispatch(verifyEmail(data));
   };
+
+  useEffect(() => {
+    if (verifyMailError) {
+      setError(verifyMailError);
+    }
+  }, [verifyMailError]);
+
+  useEffect(() => {
+    let timeout;
+    if (error) {
+      timeout = 3000;
+      setTimeout(() => {
+        setError(false);
+      }, timeout);
+    }
+    return () => clearTimeout(timeout);
+  }, [error]);
 
   useEffect(() => {
     document.title = "Lithium Finance - Email Verification";
   }, []);
+
+  useEffect(() => {
+    const userMail = user.email;
+    if (userMail) {
+      dispatch(sendMailCode(userMail));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (emailVerified) {
+      dispatch(resetMailVerify());
+      dispatch(resetSendCode());
+      navigate("/completeprofile");
+    }
+  }, [emailVerified]);
 
   return (
     <section className="h-screen bg-slate-100 p-6 flex flex-col gap-6 items-center justify-center font-[Poppins]">
@@ -66,8 +127,9 @@ const Otp = () => {
         </h3>
         <hr />
         <p className="text-sm font-light">
-          A 6-digit verification code has been sent to your email address:{" "}
-          <span className="font-medium text-slate-700">{email}</span>
+          {emailCodeLoading
+            ? "Sending verification code..."
+            : `A 6-digit verification code has been sent to your email address: ${user?.email}`}
         </p>
         <div>
           <span className="text-slate-800">Verification Code</span>
@@ -92,7 +154,7 @@ const Otp = () => {
             className="bg-green-600 px-6 py-2 rounded-3xl text-white"
             onClick={handleSubmit}
           >
-            Submit OTP
+            {!verifyMailLoading ? "Submit OTP" : "Verifying mail..."}
           </button>
           <small className="text-sm font-light text-center">
             Didn't get the code?{" "}

@@ -6,6 +6,7 @@ import userReducer from "../features/userSlice";
 import walletReducer from "../features/walletSlice";
 import trnxReducer from "../features/trnxSlice";
 import alertReducer from "../features/alertSlice";
+import verifyReducer from "../features/verifySlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     wallet: walletReducer,
     trnx: trnxReducer,
     alert: alertReducer,
+    verify: verifyReducer,
   },
 });
 
