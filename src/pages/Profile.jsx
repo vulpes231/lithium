@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Changepass, Editmodal, Sidebar, Topup } from "../components";
+import { Authnav, Changepass, Editmodal, Sidebar, Topup } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getAccessToken } from "../utils/utils";
 import { getUser } from "../features/userSlice";
@@ -13,11 +13,15 @@ const styler = {
   div: "bg-white p-6 rounded-xl shadow-lg w-full flex flex-col gap-4",
 };
 
-const Profile = () => {
+const Profile = ({ setActive }) => {
   const dispatch = useDispatch();
   const accessToken = getAccessToken();
 
   const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    setActive("profile");
+  }, []);
 
   const [editModal, setEditModal] = useState(false);
 
@@ -39,12 +43,12 @@ const Profile = () => {
     document.title = "CoinXtra - Profile";
   }, []);
   return (
-    <section className="min-h-screen bg-slate-100 w-full p-4 lg:p-0">
-      <div className="flex min-h-full mt-[66px]">
-        <Sidebar />
-        <div className="w-full lg:w-[80%] min-h-screen lg:customh flex flex-col gap-6 p-4">
+    <section className=" bg-slate-100 w-full p-6 overflow-auto h-full">
+      <div className="mb-24">
+        <div className="w-full flex gap-5 flex-col">
+          <h3 className="font-bold text-2xl md:text-3xl capitalize">profile</h3>
           <div className=" bg-white p-6 rounded-xl shadow-lg w-full md:w-[50%]">
-            <h3 className="border-l-4 border-yellow-500 px-1 font-bold">
+            <h3 className="border-l-4 border-green-500 px-1 font-bold">
               User Profile
             </h3>
             <div className="flex items-center gap-4 mt-3">
@@ -55,7 +59,7 @@ const Profile = () => {
                 <span className={styler.span}>
                   <FaUserGroup />
                   <h3 className="capitalize font-semibold text-lg">
-                    {user.fullname}
+                    {user.firstname} {user.lastname}
                   </h3>
                 </span>
                 <span className={styler.span}>
@@ -65,12 +69,12 @@ const Profile = () => {
                 <span className={styler.span}>
                   <MdLocationOn />
                   <p className="text-sm font-light whitespace-nowrap">
-                    {user.homeAddress}
+                    {user.city} {user.state} {user.zip}
                   </p>
                 </span>
                 <button
                   onClick={handleEditModal}
-                  className="bg-yellow-500 text-white px-4 py-2 font-medium flex items-center w-[150px] whitespace-nowrap gap-2 rounded-md shadow-lg"
+                  className="bg-green-500 text-white px-4 py-2 font-medium flex items-center w-[150px] whitespace-nowrap gap-2 rounded-md shadow-lg"
                 >
                   <FaUserEdit />
                   <span>Edit profile</span>
@@ -80,13 +84,13 @@ const Profile = () => {
           </div>
           <div className="flex flex-col gap-6 md:flex-row">
             <div className={styler.div}>
-              <h3 className="border-l-4 border-yellow-500 px-1 font-bold capitalize">
+              <h3 className="border-l-4 border-green-500 px-1 font-bold capitalize">
                 change password
               </h3>
               <Changepass />
             </div>
             <div className={styler.div}>
-              <h3 className="border-l-4 border-yellow-500 px-1 font-bold capitalize">
+              <h3 className="border-l-4 border-green-500 px-1 font-bold capitalize">
                 top up
               </h3>
               <Topup user={user} />

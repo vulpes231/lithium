@@ -6,7 +6,7 @@ import { getUserWallet } from "../../features/walletSlice";
 
 const Walletinfo = () => {
   const dispatch = useDispatch();
-  const { userWallet } = useSelector((state) => state.wallet);
+  const { userWallet, getWalletLoading } = useSelector((state) => state.wallet);
   const accessToken = getAccessToken();
 
   // console.log(userWallet);
@@ -37,7 +37,11 @@ const Walletinfo = () => {
       <h5 className="uppercase font-medium text-xs text-slate-600">
         account balance
       </h5>
-      {myWallets}
+      {getWalletLoading ? (
+        <p className="h-[50px]">Fetching Wallets...</p>
+      ) : (
+        myWallets
+      )}
       <span className="flex gap-4 items-center text-sm">
         <Link className="bg-green-600 text-white px-6 py-2 rounded-sm">
           deposit

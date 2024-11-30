@@ -45,7 +45,7 @@ const Topup = ({ user }) => {
       </div>
       <div className="flex justify-end">
         <Link
-          className="bg-yellow-500 text-white px-5 py-2.5 rounded-3xl mt-2 capitalize font-medium text-sm"
+          className="bg-green-500 text-white px-5 py-2.5 rounded-3xl mt-2 capitalize font-medium text-sm"
           to={"/deposit"}
         >
           top up

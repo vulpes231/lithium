@@ -3,20 +3,12 @@ import { Authnav, Dashcontent, Sidebar } from "../components";
 import { getAccessToken } from "../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/userSlice";
-import Pools from "./Pools";
 
-const Dashboard = () => {
+const Dashboard = ({ setActive }) => {
   const dispatch = useDispatch();
   const accessToken = getAccessToken();
-  const [toggle, setToggle] = useState(false);
-  const [active, setActive] = useState("dashboard");
 
   const { user } = useSelector((state) => state.user);
-
-  const handleToggle = () => {
-    console.log("toggled");
-    setToggle((prev) => !prev);
-  };
 
   useEffect(() => {
     if (accessToken) {
@@ -25,24 +17,15 @@ const Dashboard = () => {
   }, [dispatch, accessToken]);
 
   useEffect(() => {
+    setActive("dashboard");
+  }, []);
+
+  useEffect(() => {
     document.title = "Lithium Finance - Dashboard";
   }, []);
   return (
-    <section className="relative min-h-screen bg-slate-100 w-full font-[Poppins]">
-      <Authnav toggle={toggle} handleToggle={handleToggle} userInfo={user} />
-      <div className="flex h-full">
-        <Sidebar
-          toggle={toggle}
-          handleToggle={handleToggle}
-          active={active}
-          setActive={setActive}
-        />
-        {active === "dashboard" ? (
-          <Dashcontent />
-        ) : active === "pools" ? (
-          <Pools />
-        ) : null}
-      </div>
+    <section className=" bg-slate-100 w-full h-full font-[Poppins]">
+      <Dashcontent />
     </section>
   );
 };

@@ -7,47 +7,53 @@ import { BiSupport } from "react-icons/bi";
 import { Si2Fas } from "react-icons/si";
 import { FaUserGear } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const sideBarLinks = [
   {
     id: 1,
     name: "dashboard",
+    path: "/dashboard",
   },
   {
     id: 2,
     name: "pools",
+    path: "/pools",
   },
   {
     id: 3,
     name: "deposit",
+    path: "/deposit",
   },
   {
     id: 4,
     name: "withdraw",
+    path: "/withdraw",
   },
   {
     id: 5,
     name: "transactions",
+    path: "/transactions",
   },
   {
     id: 6,
     name: "referrals",
+    path: "/referrals",
   },
   {
     id: 7,
     name: "support ticket",
+    path: "/support",
   },
   {
     id: 8,
     name: "2FA",
+    path: "/twofactor",
   },
   {
     id: 9,
     name: "profile",
-  },
-  {
-    id: 10,
-    name: "change password",
+    path: "/profile",
   },
 ];
 
@@ -77,21 +83,19 @@ const Sidebarlinks = ({ active, setActive, handleToggle }) => {
       ) : null;
 
     return (
-      <li
-        onClick={() => {
-          setActive(link.name);
-          handleToggle();
-        }}
+      <Link
+        onClick={() => handleToggle()}
         className={`${
           active === link.name
             ? "bg-green-100 rounded-3xl text-green-600"
             : "text-slate-600"
         } py-2 px-4 cursor-pointer font-medium text-sm flex items-center gap-2`}
         key={link.id}
+        to={link.path}
       >
         <span className="text-lg md:text-xl">{icon}</span>
         {link.name}
-      </li>
+      </Link>
     );
   });
   return <ul className="capitalize flex flex-col gap-3">{myLinks}</ul>;

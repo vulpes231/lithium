@@ -4,7 +4,7 @@ import { changePass, resetChangePass } from "../features/userSlice";
 
 const styler = {
   input:
-    "border outline-none focus:outline-yellow-500 focus:border-none p-2 placeholder:font-thin placeholder:text-sm",
+    "border outline-none focus:outline-green-500 focus:border-none p-2 placeholder:font-thin placeholder:text-sm",
 };
 
 const Changepass = () => {
@@ -105,7 +105,7 @@ const Changepass = () => {
       )}
       <button
         onClick={handlePass}
-        className="bg-yellow-500 text-white capitalize font-medium mt-5 p-2 text-sm"
+        className="bg-green-500 text-white capitalize font-medium mt-5 p-2 text-sm"
       >
         {!updatePassLoading ? "change password" : "wait..."}
       </button>
