@@ -4,6 +4,7 @@ import {
   Dashboard,
   Deposit,
   Fee,
+  Invest,
   Landing,
   Otp,
   Personal,
@@ -81,7 +82,8 @@ const App = () => {
             path="/dashboard"
             element={<Dashboard setActive={setActive} />}
           />
-          <Route path="/deposit" element={<Deposit />} />
+          <Route path="/invest" element={<Invest setActive={setActive} />} />
+          <Route path="/deposit" element={<Deposit setActive={setActive} />} />
           <Route path="/withdraw" element={<Withdraw />} />
           <Route path="/about" element={<About />} />
           <Route path="/plans" element={<Plans />} />

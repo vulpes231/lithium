@@ -13,7 +13,7 @@ const Authnav = ({ toggle, handleToggle, userInfo }) => {
         <button
           type="button"
           onClick={() => setShowMenu((prev) => !prev)}
-          className="text-white bg-slate-800 rounded-full w-10 h-10 text-center uppercase"
+          className="text-white text-xs bg-slate-800 rounded-full w-10 h-10 text-center uppercase"
         >
           {`${userInfo?.firstname?.slice(0, 1)}${userInfo?.lastname?.slice(
             0,

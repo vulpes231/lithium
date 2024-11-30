@@ -27,7 +27,7 @@ const Pools = ({ setActive }) => {
             <span className={`${styles.invest} `}>
               <h3 className="font-semibold text-sm">total invest</h3>
               <p className="font-semibold text-xl text-green-600">$0.00</p>
-              <Link to={"/plan"} className={`bg-slate-950 ${styles.button}`}>
+              <Link to={"/invest"} className={`bg-slate-950 ${styles.button}`}>
                 stake <MdArrowForward />
               </Link>
             </span>

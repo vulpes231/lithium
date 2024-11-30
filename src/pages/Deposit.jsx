@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Deposithistory, Sidebar } from "../components";
-import { TbPigMoney } from "react-icons/tb";
-import { IoWalletOutline } from "react-icons/io5";
+
 import { getAccessToken } from "../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/userSlice";
 import { getUserWallet } from "../features/walletSlice";
 import { getBtcData } from "../features/coinSlice";
 import { depositFunds } from "../features/trnxSlice";
+import { Link } from "react-router-dom";
+import { MdArrowBack } from "react-icons/md";
 
-const styler = {
-  input:
-    "border outline-none focus:border-none focus:outline-yellow-500 p-2 placeholder:text-sm placeholder:font-thin",
-  div: "flex flex-col gap-1",
-  label: "capitalize font-medium text-sm",
-  para: " capitalize px-1",
-  span: "flex items-center gap-1",
-  icon: "w-10 h-10 p-1.5 rounded-full",
+const styles = {
+  formHolder: "flex flex-col gap-1",
 };
 
-const Deposit = () => {
+const Deposit = ({ setActive }) => {
   const dispatch = useDispatch();
   const accessToken = getAccessToken();
 
@@ -29,6 +23,7 @@ const Deposit = () => {
 
   const [form, setForm] = useState({
     amount: "",
+    gateway: "",
   });
 
   const [copy, setCopy] = useState(false);
@@ -94,104 +89,102 @@ const Deposit = () => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(userWallet?.balance);
-  return (
-    <section className="min-h-screen bg-slate-100 w-full ">
-      <div className="flex min-h-full mt-[66px]">
-        <Sidebar />
-        <div className=" w-full lg:w-[80%] min-h-screen lg:customh gap-6 flex flex-col md:flex-row font-[Poppins] text-xs md:text-lg p-4">
-          <div className="w-full flex flex-col gap-4">
-            <div className="flex flex-col gap-1 p-4 bg-white rounded-xl shadow-lg">
-              <span className={styler.span}>
-                <TbPigMoney
-                  className={`${styler.icon} bg-green-100 text-green-500`}
-                />
-                <p
-                  className={`${styler.para} whitespace-nowrap text-xs md:text-sm`}
-                >
-                  available balance:{" "}
-                  <span className="font-semibold md:font-bold ">
-                    ${formattedBalance}
-                  </span>
-                </p>
-              </span>
-              <span className={styler.span}>
-                <IoWalletOutline
-                  className={`${styler.icon} bg-yellow-100 text-yellow-500`}
-                />
-                <p
-                  className={`${styler.para} whitespace-nowrap text-xs md:text-sm`}
-                >
-                  linked address: <span className="">{user?.bindAddress}</span>{" "}
-                </p>
-              </span>
-            </div>
-            <form
-              action=""
-              className="flex flex-col gap-4 bg-white  rounded-xl shadow-lg p-4"
-            >
-              <h3 className="border-l-4 border-yellow-500 px-1 font-bold">
-                Deposit
-              </h3>
 
-              <div className={styler.div}>
-                <label
-                  className={`${styler.label} bg-green-100 p-2 rounded-sm`}
-                  htmlFor=""
-                >
-                  deposit{" "}
-                  <span className="font-semibold text-xs">
-                    {form.amount} USD
-                  </span>{" "}
-                  to{" "}
-                  <span className="font-medium text-xs">
-                    {userWallet?.address}
-                  </span>
-                </label>
-                <span className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    className={`${styler.input} w-full placeholder:text-slate-900 placeholder:font-medium`}
-                    placeholder={userWallet?.address}
-                    readOnly
-                  />
-                  <button
-                    onClick={copyToClipboard}
-                    className="bg-slate-400 text-white text-xs w-[15%] font-light py-3 px-3"
-                  >
-                    {!copy ? "Copy" : "Copied"}
-                  </button>
-                </span>
-              </div>
-              <div className={styler.div}>
-                <label className={styler.label} htmlFor="">
-                  amount
-                </label>
+  useEffect(() => {
+    setActive("deposit");
+  }, []);
+  return (
+    <section className="bg-slate-100 h-full p-6 overflow-auto text-slate-700">
+      <div className="w-full md:max-w-[60%] md:mx-auto mb-24 flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
+          <h3 className="font-semibold text-xl md:text-2xl capitalize">
+            deposit funds
+          </h3>
+          <p className="font-light text-sm">
+            Add funds using our system's gateway. The deposited amount will be
+            credited to the deposit wallet. You'll just make investments from
+            this wallet.
+          </p>
+          <div className="flex justify-end">
+            <Link className="bg-slate-950 flex items-center gap-1 text-white capitalize px-4 py-2 rounded-sm shadow-md text-sm font-medium">
+              <MdArrowBack /> deposit history
+            </Link>
+          </div>
+        </div>
+        <div className="bg-white p-6 shadow-sm rounded-sm">
+          <form action="" className="flex flex-col gap-3">
+            <div className={styles.formHolder}>
+              <label htmlFor="">
+                select gateway <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="gateway"
+                className="bg-transparent p-2 border capitalize"
+                onChange={handleInput}
+                value={form.gateway}
+              >
+                <option value="">select one</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="usdt">USDT(ERC20, BEP20)</option>
+              </select>
+            </div>
+            <div className={styles.formHolder}>
+              <label htmlFor="">
+                amount <span className="text-red-500">*</span>
+              </label>
+              <span className="flex items-center border p-2 ">
                 <input
-                  type="text"
-                  placeholder="Amount"
-                  className={styler.input}
-                  onChange={handleInput}
+                  type="number"
+                  className="w-full outline-none "
                   value={form.amount}
                   name="amount"
+                  onChange={handleInput}
                 />
-              </div>
-              <div className="flex justify-between items-center capitalize text-xs font-medium text-slate-400">
-                {/* <span>fees: ${fee}</span> */}
-                <span>
-                  Coin amount: {coinAmount?.toFixed(4) || `0.0000`} BTC
-                </span>
-              </div>
-              <button
-                onClick={handleDeposit}
-                className="text-white bg-yellow-500 border-none p-2 mt-5 font-semibold uppercase"
-              >
-                deposit
-              </button>
-            </form>
-          </div>
-          <div className="w-full ">
-            <Deposithistory />
-          </div>
+                <span className="w-[30px]">USD</span>
+              </span>
+            </div>
+            <div className="py-5">
+              {form.gateway && (
+                <div className="capitalize border text-sm">
+                  <span className="flex justify-between items-center py-4 px-2 border-b">
+                    <small>limit</small>
+                    <small>250.00 USD - 1,000,000.00 USD</small>
+                  </span>
+                  <span className="flex justify-between items-center py-4 px-2 border-b">
+                    <small>charge</small>
+                    <small>0.00 USD</small>
+                  </span>
+                  <span className="flex justify-between items-center py-4 px-2 border-b">
+                    <small>payable</small>
+                    <small>
+                      {form.amount && parseFloat(form.amount).toFixed(2)} USD
+                    </small>
+                  </span>
+                  <span className="flex justify-between items-center py-4 px-2 border-b font-bold">
+                    <small>conversion rate</small>
+                    <small>
+                      1 USD = 1 {form.gateway === "bitcoin" ? "BTC" : "USDT"}
+                    </small>
+                  </span>
+                  <span className="flex justify-between items-center py-4 px-2 border-b font-bold">
+                    <small>
+                      in {form.gateway === "bitcoin" ? "BTC" : "USDT"}
+                    </small>
+                    <small>
+                      {form.gateway === "usdt"
+                        ? parseFloat(form.amount).toFixed(2)
+                        : form.gateway === "bitcoin "
+                        ? "0"
+                        : "0.00"}
+                    </small>
+                  </span>
+                </div>
+              )}
+            </div>
+            <button className="p-2 bg-green-600 text-white capitalize">
+              submit
+            </button>
+          </form>
         </div>
       </div>
     </section>
