@@ -74,8 +74,8 @@ const Signup = () => {
       setTimeout(() => {
         const token = JSON.stringify(accessToken);
         sessionStorage.setItem("accessToken", token);
-        resetLogin();
-        navigate("/verifyotp");
+        resetRegister();
+        navigate("/completeprofile");
       }, timeout);
     }
     return () => clearTimeout(timeout);
@@ -169,7 +169,7 @@ const Signup = () => {
           </span>
         </div>
         {error && <p className="text-xs text-red-500">{error}</p>}
-        {userRegistered && (
+        {accessToken && (
           <p className="text-xs text-green-500">
             User account created successfully.
           </p>

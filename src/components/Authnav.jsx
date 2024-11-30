@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdMenu } from "react-icons/md";
+import Authmenu from "./Authmenu";
 
-const Authnav = ({ toggle, handleToggle }) => {
+const Authnav = ({ toggle, handleToggle, userInfo }) => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <header className="text-slate-800 bg-white p-6">
       <nav className="flex justify-between items-center lg:px-6">
         <span className="cursor-pointer" onClick={handleToggle}>
           <MdMenu className="text-2xl font-bold" />
         </span>
-        <span className="text-white bg-slate-800 rounded-full p-2 text-center">
-          <h5>UN</h5>
-        </span>
+        <button
+          type="button"
+          onClick={() => setShowMenu((prev) => !prev)}
+          className="text-white bg-slate-800 rounded-full w-10 h-10 text-center uppercase"
+        >
+          {`${userInfo?.firstname?.slice(0, 1)}${userInfo?.lastname?.slice(
+            0,
+            1
+          )}`}
+        </button>
+        {showMenu && <Authmenu />}
       </nav>
     </header>
   );

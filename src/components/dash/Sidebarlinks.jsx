@@ -30,29 +30,28 @@ const sideBarLinks = [
     name: "transactions",
   },
   {
-    id: 5,
+    id: 6,
     name: "referrals",
   },
   {
-    id: 5,
+    id: 7,
     name: "support ticket",
   },
   {
-    id: 5,
+    id: 8,
     name: "2FA",
   },
   {
-    id: 5,
+    id: 9,
     name: "profile",
   },
   {
-    id: 5,
+    id: 10,
     name: "change password",
   },
 ];
 
-const Sidebarlinks = () => {
-  const [active, setActive] = useState("dashboard");
+const Sidebarlinks = ({ active, setActive, handleToggle }) => {
   const myLinks = sideBarLinks.map((link) => {
     const icon =
       link.name == "dashboard" ? (
@@ -76,9 +75,13 @@ const Sidebarlinks = () => {
       ) : link.name == "change password" ? (
         <RiLockPasswordFill />
       ) : null;
+
     return (
       <li
-        onClick={() => setActive(link.name)}
+        onClick={() => {
+          setActive(link.name);
+          handleToggle();
+        }}
         className={`${
           active === link.name
             ? "bg-green-100 rounded-3xl text-green-600"

@@ -20,6 +20,6 @@ const sendError = (error) => {
 };
 
 const devServer = `http://localhost:5000`;
-const liveServer = `https://coinxtra-server.onrender.com`;
+const liveServer = `https://lith-ui.onrender.com`;
 
 export { getAccessToken, sendError, devServer, liveServer };

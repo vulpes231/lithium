@@ -5,7 +5,7 @@ import axios from "axios";
 const initialState = {
   registerLoading: false,
   registerError: false,
-  accessToken: null,
+  accessToken: false,
 };
 
 export const registerUser = createAsyncThunk(
@@ -34,7 +34,7 @@ const registerSlice = createSlice({
     resetRegister(state) {
       state.registerLoading = false;
       state.registerError = false;
-      state.accessToken = null;
+      state.accessToken = false;
     },
   },
   extraReducers: (builder) => {
@@ -50,7 +50,7 @@ const registerSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.registerLoading = false;
         state.registerError = action.error.message;
-        state.accessToken = null;
+        state.accessToken = false;
       });
   },
 });

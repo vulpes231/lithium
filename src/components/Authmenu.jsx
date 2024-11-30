@@ -39,19 +39,13 @@ const Authmenu = ({ close }) => {
     }
   }, [loggedOut]);
   return (
-    <div className="absolute top-[70px] right-0 flex flex-col gap-5 capitalize bg-white p-6 rounded-bl-xl shadow-lg shadow-yellow-100 w-[250px]">
+    <div className="absolute top-[70px] right-0 flex flex-col gap-5 capitalize bg-white p-6 rounded-bl-xl shadow-lg shadow-green-100 w-[250px]">
       {authLinks.map((link) => {
         const icon =
-          link.id === "dashboard" ? (
+          link.id === "profile" ? (
             <MdHome />
-          ) : link.id === "withdraw" ? (
+          ) : link.id === "changepass" ? (
             <PiHandWithdrawFill />
-          ) : link.id === "deposit" ? (
-            <FaMoneyBills />
-          ) : link.id === "profile" ? (
-            <RiFileUserFill />
-          ) : link.id === "faq" ? (
-            <FaQuestionCircle />
           ) : null;
         return (
           <Link

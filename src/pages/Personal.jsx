@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { editUser, resetEditUser } from "../features/userSlice";
 
 const Myinput = ({ label, value, handleChange, name }) => {
   return (
@@ -36,6 +37,10 @@ const Personal = () => {
 
   const [error, setError] = useState("");
 
+  const { editUserLoading, editUserError, userEdited } = useSelector(
+    (state) => state.user
+  );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -55,9 +60,28 @@ const Personal = () => {
 
     console.log("Form Submitted:", form);
 
-    // Reset error state
+    dispatch(editUser(form));
+
     setError("");
   };
+
+  useEffect(() => {
+    if (editUserError) {
+      setError(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    let timeout;
+    if (userEdited) {
+      timeout = 2000;
+      setTimeout(() => {
+        resetEditUser();
+        navigate("/dashboard");
+      }, timeout);
+    }
+    return () => clearTimeout(timeout);
+  }, [userEdited]);
 
   useEffect(() => {
     document.title = "Lithium Finance - Complete Profile";
@@ -121,7 +145,7 @@ const Personal = () => {
             type="submit"
             className="p-2.5 bg-green-600 text-white rounded-3xl"
           >
-            Submit
+            {!editUserLoading ? "Submit" : "Updating..."}
           </button>
         </form>
       </div>
