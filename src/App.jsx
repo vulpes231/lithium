@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   Dashboard,
   Deposit,
+  Deposithistory,
   Fee,
   Invest,
   Landing,
@@ -10,8 +11,11 @@ import {
   Personal,
   Pools,
   Profile,
+  Referrals,
   Signin,
   Signup,
+  Ticket,
+  Transactions,
   Withdraw,
 } from "./pages";
 import { Authnav, Footer, Navbar, Sidebar } from "./components";
@@ -53,7 +57,9 @@ const App = () => {
   }, [accessToken]);
 
   return (
-    <section className="h-screen overflow-hidden relative">
+    <section
+      className={token ? "h-screen relative overflow-hidden" : "overflow-auto"}
+    >
       {token && (
         <Authnav toggle={toggle} handleToggle={handleToggle} userInfo={user} />
       )}
@@ -70,7 +76,7 @@ const App = () => {
       </div>
 
       <div
-        className={token ? "lg:ml-[290px] font-[Poppins] h-screen" : "lg:ml-0"}
+        className={token ? "lg:ml-[290px] font-[Poppins] h-screen " : "lg:ml-0"}
       >
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -84,7 +90,23 @@ const App = () => {
           />
           <Route path="/invest" element={<Invest setActive={setActive} />} />
           <Route path="/deposit" element={<Deposit setActive={setActive} />} />
-          <Route path="/withdraw" element={<Withdraw />} />
+          <Route
+            path="/history"
+            element={<Deposithistory setActive={setActive} />}
+          />
+          <Route
+            path="/transactions"
+            element={<Transactions setActive={setActive} />}
+          />
+          <Route
+            path="/referrals"
+            element={<Referrals setActive={setActive} user={user} />}
+          />
+          <Route path="/ticket" element={<Ticket setActive={setActive} />} />
+          <Route
+            path="/withdraw"
+            element={<Withdraw setActive={setActive} />}
+          />
           <Route path="/about" element={<About />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/profile" element={<Profile setActive={setActive} />} />

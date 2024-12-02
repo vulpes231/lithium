@@ -10,6 +10,7 @@ const styles = {
 
 const Pools = ({ setActive }) => {
   useEffect(() => {
+    document.title = "Finance Hedge - Invest Pools";
     setActive("pools");
   }, []);
 

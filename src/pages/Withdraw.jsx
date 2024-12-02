@@ -20,7 +20,7 @@ const styler = {
   icon: "w-10 h-10 p-1.5 rounded-full",
 };
 
-const Withdraw = () => {
+const Withdraw = ({ setActive }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accessToken = getAccessToken();
@@ -68,7 +68,11 @@ const Withdraw = () => {
   };
 
   useEffect(() => {
-    document.title = "CoinXtra - Withdraw";
+    setActive("withdraw");
+  }, []);
+
+  useEffect(() => {
+    document.title = "Finance Hedge - Withdraw";
     if (accessToken) {
       dispatch(getUser());
       dispatch(getUserWallet());
@@ -114,8 +118,7 @@ const Withdraw = () => {
 
   return (
     <section className="min-h-screen bg-slate-100 w-full">
-      <div className="flex min-h-full mt-[66px]">
-        <Sidebar />
+      <div className="flex min-h-full ">
         <div className=" w-full lg:w-[80%] min-h-screen lg:customh gap-6 flex flex-col md:flex-row font-[Poppins] p-4">
           <div className="w-full flex flex-col gap-4">
             <div className="flex flex-col gap-1 p-4 bg-white rounded-xl shadow-lg">

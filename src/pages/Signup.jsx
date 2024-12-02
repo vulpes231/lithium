@@ -82,7 +82,7 @@ const Signup = () => {
   }, [accessToken]);
 
   useEffect(() => {
-    document.title = "Lithium Finance - Register";
+    document.title = "Finance Hedge - Register";
   }, []);
   return (
     <section className="customHeight bg-slate-100 p-10 font-[Poppins]">

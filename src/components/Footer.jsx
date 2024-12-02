@@ -21,7 +21,7 @@ const Footer = () => {
             className="w-[20px] md:w-[40px] lg:w-[50px]"
           />
           <h3 className="uppercase font-bold text-lg md:text-xl lg:text-2xl">
-            lithium <span className="text-green-600">finance</span>
+            finance <span className="text-green-600">hedge</span>
           </h3>
         </div>
         <small className="font-light text-slate-400">

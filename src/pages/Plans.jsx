@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 
 const myPlans = [
@@ -89,6 +89,10 @@ const Plans = () => {
     "scalping",
     "size",
   ];
+
+  useEffect(() => {
+    document.title = "Finance Hedge - Plans";
+  }, []);
 
   return (
     <section className="bg-slate-800 min-h-screen text-white">

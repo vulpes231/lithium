@@ -22,7 +22,7 @@ const Landing = () => {
       {/* navbar */}
       <Navbar />
       {/* Content */}
-      <div className="relative z-10  flex flex-col ">
+      <div className="relative z-10 flex flex-col ">
         <div className="lg:max-w-[1100px] lg:mx-auto ">
           <Hero />
         </div>

@@ -84,7 +84,7 @@ const Personal = () => {
   }, [userEdited]);
 
   useEffect(() => {
-    document.title = "Lithium Finance - Complete Profile";
+    document.title = "Finance Hedge - Complete Profile";
   }, []);
 
   return (

@@ -76,7 +76,7 @@ const Deposit = ({ setActive }) => {
   }, [copy]);
 
   useEffect(() => {
-    document.title = "CoinXtra - Deposit";
+    document.title = "Finance Hedge - Deposit";
     if (accessToken) {
       dispatch(getUser());
       dispatch(getUserWallet());
@@ -106,7 +106,10 @@ const Deposit = ({ setActive }) => {
             this wallet.
           </p>
           <div className="flex justify-end">
-            <Link className="bg-slate-950 flex items-center gap-1 text-white capitalize px-4 py-2 rounded-sm shadow-md text-sm font-medium">
+            <Link
+              to={"/history"}
+              className="bg-slate-950 flex items-center gap-1 text-white capitalize px-4 py-2 rounded-md shadow-md text-sm font-medium"
+            >
               <MdArrowBack /> deposit history
             </Link>
           </div>

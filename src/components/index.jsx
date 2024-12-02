@@ -11,7 +11,6 @@ import Sidebar from "./Sidebar";
 import Withrawhistory from "./Withrawhistory";
 import Changepass from "./Changepass";
 import Topup from "./Topup";
-import Deposithistory from "./Deposithistory";
 import Dashwallet from "./Dashwallet";
 import Editmodal from "./Editmodal";
 import Walletinfo from "./dash/Walletinfo";
@@ -27,7 +26,6 @@ export {
   Editmodal,
   Dashwallet,
   Walletinfo,
-  Deposithistory,
   Navbar,
   Coincard,
   Footer,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { tradeone, tradetwo } from "../assets";
 import { Footer, Navbar } from "../components";
 
@@ -21,6 +21,9 @@ const Aboutcard = ({ title, content, customClass, img }) => {
 };
 
 const About = () => {
+  useEffect(() => {
+    document.title = "Finance Hedge - About";
+  }, []);
   return (
     <section className="min-h-screen bg-slate-900 text-[#fff]  font-[Poppins]">
       <Navbar />

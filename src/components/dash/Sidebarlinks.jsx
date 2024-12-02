@@ -43,7 +43,7 @@ const sideBarLinks = [
   {
     id: 7,
     name: "support ticket",
-    path: "/support",
+    path: "/ticket",
   },
   {
     id: 8,

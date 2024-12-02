@@ -23,7 +23,7 @@ const initialState = {
 };
 
 export const getUser = createAsyncThunk("user/getUser", async () => {
-  const url = `${devServer}/user`;
+  const url = `${liveServer}/user`;
   const accessToken = getAccessToken();
   //   console.log(accessToken);
   try {
@@ -41,7 +41,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
 });
 
 export const editUser = createAsyncThunk("user/editUser", async (formData) => {
-  const url = `${devServer}/user`;
+  const url = `${liveServer}/user`;
   const accessToken = getAccessToken();
   //   console.log(accessToken);
   try {
@@ -61,7 +61,7 @@ export const editUser = createAsyncThunk("user/editUser", async (formData) => {
 export const changePass = createAsyncThunk(
   "user/changePass",
   async (formData) => {
-    const url = `${devServer}/user/changepass`;
+    const url = `${liveServer}/user/changepass`;
     const accessToken = getAccessToken();
     //   console.log(accessToken);
     try {

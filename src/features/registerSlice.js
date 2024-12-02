@@ -11,7 +11,7 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (formData) => {
-    const url = `${devServer}/signup`;
+    const url = `${liveServer}/signup`;
     try {
       const response = await axios.post(url, formData, {
         headers: {

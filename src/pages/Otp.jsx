@@ -98,7 +98,7 @@ const Otp = () => {
   }, [error]);
 
   useEffect(() => {
-    document.title = "Lithium Finance - Email Verification";
+    document.title = "Finance Hedge - Email Verification";
   }, []);
 
   useEffect(() => {

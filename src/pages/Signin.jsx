@@ -70,7 +70,7 @@ const Signin = () => {
   }, [accessToken]);
 
   useEffect(() => {
-    document.title = "Lithium Finance - Login";
+    document.title = "Finance Hedge - Login";
   }, []);
 
   return (
