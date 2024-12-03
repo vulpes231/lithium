@@ -15,7 +15,7 @@ const Pools = ({ setActive }) => {
   }, []);
 
   return (
-    <section className="w-full p-6 font-[Poppins] bg-slate-100 h-full">
+    <section className="w-full p-6 font-[Poppins] bg-slate-100 h-full overflow-auto">
       <div className="flex flex-col gap-6">
         <span className="flex flex-col gap-1">
           <p className="font-light text-sm">Investments</p>
@@ -35,7 +35,10 @@ const Pools = ({ setActive }) => {
             <span className={`${styles.invest} flex justify-end items-end`}>
               <h3 className="font-semibold text-sm">total profit</h3>
               <p className="font-semibold text-xl text-green-600">$0.00</p>
-              <Link className={`bg-green-600 ${styles.button}`}>
+              <Link
+                to={"/withdraw"}
+                className={`bg-green-600 ${styles.button}`}
+              >
                 withdraw <MdArrowForward />
               </Link>
             </span>
@@ -46,7 +49,7 @@ const Pools = ({ setActive }) => {
             </h3>
           </div>
         </div>
-        <div className="">
+        <div className="mb-24">
           <span className="flex justify-between items-center p-6">
             <h3 className="font-semibold capitalize">active pools (0)</h3>
             <small className="text-green-600 underline capitalize flex items-center">

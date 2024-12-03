@@ -6,6 +6,7 @@ import {
   Deposithistory,
   Fee,
   Invest,
+  Kyc,
   Landing,
   Otp,
   Personal,
@@ -16,6 +17,7 @@ import {
   Signup,
   Ticket,
   Transactions,
+  Twofactor,
   Withdraw,
 } from "./pages";
 import { Authnav, Footer, Navbar, Sidebar } from "./components";
@@ -107,6 +109,8 @@ const App = () => {
             path="/withdraw"
             element={<Withdraw setActive={setActive} />}
           />
+          <Route path="/kycverification" element={<Kyc />} />
+          <Route path="/2fa" element={<Twofactor setActive={setActive} />} />
           <Route path="/about" element={<About />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/profile" element={<Profile setActive={setActive} />} />

@@ -24,8 +24,8 @@ const Dashboard = ({ setActive }) => {
     document.title = "Finance Hedge - Dashboard";
   }, []);
   return (
-    <section className=" bg-slate-100 w-full h-full font-[Poppins]">
-      <Dashcontent />
+    <section className=" bg-slate-100 w-full h-full font-[Poppins] overflow-auto">
+      <Dashcontent user={user} />
     </section>
   );
 };

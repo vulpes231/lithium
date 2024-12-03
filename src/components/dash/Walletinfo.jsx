@@ -43,10 +43,16 @@ const Walletinfo = () => {
         myWallets
       )}
       <span className="flex gap-4 items-center text-sm">
-        <Link className="bg-green-600 text-white px-6 py-2 rounded-sm">
+        <Link
+          to={"/deposit"}
+          className="bg-green-600 text-white px-6 py-2 rounded-sm"
+        >
           deposit
         </Link>
-        <Link className="bg-slate-900 text-white px-6 py-2 rounded-sm">
+        <Link
+          to={"/withdraw"}
+          className="bg-slate-900 text-white px-6 py-2 rounded-sm"
+        >
           withdraw
         </Link>
       </span>

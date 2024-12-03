@@ -48,7 +48,7 @@ const sideBarLinks = [
   {
     id: 8,
     name: "2FA",
-    path: "/twofactor",
+    path: "/2fa",
   },
   {
     id: 9,

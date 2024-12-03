@@ -11,7 +11,7 @@ const Transactions = ({ setActive }) => {
     setActive("transactions");
   }, []);
   return (
-    <section className="bg-slate-100 text-slate-700 h-full p-6">
+    <section className="bg-slate-100 text-slate-700 h-full p-6 overflow-auto">
       <div className="flex flex-col gap-6">
         <div>
           <small>Transactions</small>
@@ -65,7 +65,7 @@ const Transactions = ({ setActive }) => {
             </select>
           </div>
         </div>
-        <div className="bg-white w-full flex item-center justify-center p-6 border">
+        <div className="bg-white w-full flex item-center justify-center p-6 border mb-24">
           <p>No data found </p>
         </div>
       </div>
