@@ -7,6 +7,8 @@ import walletReducer from "../features/walletSlice";
 import trnxReducer from "../features/trnxSlice";
 import alertReducer from "../features/alertSlice";
 import verifyReducer from "../features/verifySlice";
+import poolReducer from "../features/poolSlice";
+import verifyAccountReducer from "../features/verifyAccountSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +20,8 @@ const store = configureStore({
     trnx: trnxReducer,
     alert: alertReducer,
     verify: verifyReducer,
+    pool: poolReducer,
+    verifyaccount: verifyAccountReducer,
   },
 });
 

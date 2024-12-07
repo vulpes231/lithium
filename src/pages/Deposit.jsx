@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import { getAccessToken } from "../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/userSlice";
 import { getUserWallet } from "../features/walletSlice";
 import { getBtcData } from "../features/coinSlice";
 import { depositFunds } from "../features/trnxSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 
 const styles = {
@@ -15,6 +14,7 @@ const styles = {
 
 const Deposit = ({ setActive }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const accessToken = getAccessToken();
 
   const { user } = useSelector((state) => state.user);
@@ -26,9 +26,7 @@ const Deposit = ({ setActive }) => {
     gateway: "",
   });
 
-  const [copy, setCopy] = useState(false);
-
-  const fee = 0.024 * form.amount || `0.00`;
+  const [error, setError] = useState("");
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -40,40 +38,27 @@ const Deposit = ({ setActive }) => {
 
   const coinAmount = form.amount / btcData?.bitcoin?.usd;
 
-  const copyToClipboard = (e) => {
-    e.preventDefault();
-    const textToCopy = userWallet?.address;
-
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        setCopy(true);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  };
-
   const handleDeposit = (e) => {
     e.preventDefault();
-    const data = {
-      amount: form.amount,
-      address: userWallet?.address,
-      coinType: "bitcoin",
-    };
-    dispatch(depositFunds(data));
+    const parsedAmount = parseFloat(form.amount);
+    console.log("parsed amount: ", parsedAmount);
+    if (parsedAmount < 250) {
+      setError("Minimum deposit is 250 USD");
+    } else {
+      setError("");
+      navigate(`/pay/${form.gateway}/${form.amount}`);
+    }
   };
 
   useEffect(() => {
     let timeout;
-    if (copy) {
-      timeout = 3000;
-      setTimeout(() => {
-        setCopy(false);
-      }, timeout);
+    if (error) {
+      timeout = setTimeout(() => {
+        setError("");
+      }, 3000);
     }
     return () => clearTimeout(timeout);
-  }, [copy]);
+  }, [error]);
 
   useEffect(() => {
     document.title = "Finance Hedge - Deposit";
@@ -84,15 +69,10 @@ const Deposit = ({ setActive }) => {
     }
   }, [accessToken, dispatch]);
 
-  const formattedBalance = new Intl.NumberFormat("en-US", {
-    style: "decimal",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(userWallet?.balance);
-
   useEffect(() => {
     setActive("deposit");
   }, []);
+
   return (
     <section className="bg-slate-100 h-full p-6 overflow-auto text-slate-700">
       <div className="w-full md:max-w-[60%] md:mx-auto mb-24 flex flex-col gap-6">
@@ -146,6 +126,9 @@ const Deposit = ({ setActive }) => {
                 <span className="w-[30px]">USD</span>
               </span>
             </div>
+            {error && (
+              <p className="text-xs font-light text-red-500">{error}</p> // Display error message if exists
+            )}
             <div className="py-5">
               {form.gateway && (
                 <div className="capitalize border text-sm">
@@ -178,13 +161,16 @@ const Deposit = ({ setActive }) => {
                         ? parseFloat(form.amount).toFixed(2)
                         : form.gateway === "bitcoin "
                         ? "0"
-                        : "0.00"}
+                        : coinAmount.toFixed(4)}
                     </small>
                   </span>
                 </div>
               )}
             </div>
-            <button className="p-2 bg-green-600 text-white capitalize">
+            <button
+              onClick={handleDeposit}
+              className="p-2 bg-green-600 text-white capitalize"
+            >
               submit
             </button>
           </form>

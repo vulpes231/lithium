@@ -1,3 +1,4 @@
+import Completedeposit from "./Completedeposit";
 import Dashboard from "./Dashboard";
 import Deposit from "./Deposit";
 import Deposithistory from "./Deposithistory";
@@ -19,6 +20,7 @@ import Withdraw from "./Withdraw";
 
 export {
   Kyc,
+  Completedeposit,
   Twofactor,
   Ticket,
   Invest,

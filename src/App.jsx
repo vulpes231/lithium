@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import {
+  Completedeposit,
   Dashboard,
   Deposit,
   Deposithistory,
@@ -110,6 +111,10 @@ const App = () => {
             element={<Withdraw setActive={setActive} />}
           />
           <Route path="/kycverification" element={<Kyc />} />
+          <Route
+            path="/pay/:gateway/:amount"
+            element={<Completedeposit setActive={setActive} />}
+          />
           <Route path="/2fa" element={<Twofactor setActive={setActive} />} />
           <Route path="/about" element={<About />} />
           <Route path="/plans" element={<Plans />} />

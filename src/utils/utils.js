@@ -19,7 +19,21 @@ const sendError = (error) => {
   }
 };
 
+const formatNumber = (number) => {
+  try {
+    const formattedBalance = new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(number);
+    return formattedBalance;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error formatting number.");
+  }
+};
+
 const devServer = `http://localhost:5000`;
 const liveServer = `https://lith-ui.onrender.com`;
 
-export { getAccessToken, sendError, devServer, liveServer };
+export { getAccessToken, sendError, devServer, liveServer, formatNumber };

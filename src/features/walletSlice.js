@@ -16,7 +16,7 @@ const initialState = {
 export const getUserWallet = createAsyncThunk(
   "wallet/getUserWallet",
   async () => {
-    const url = `${devServer}/wallet`;
+    const url = `${liveServer}/wallet`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.get(url, {
