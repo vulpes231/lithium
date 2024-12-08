@@ -41,7 +41,7 @@ const Deposit = ({ setActive }) => {
   const handleDeposit = (e) => {
     e.preventDefault();
     const parsedAmount = parseFloat(form.amount);
-    console.log("parsed amount: ", parsedAmount);
+    // console.log("parsed amount: ", parsedAmount);
     if (parsedAmount < 250) {
       setError("Minimum deposit is 250 USD");
     } else {

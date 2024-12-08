@@ -1,5 +1,10 @@
 import axios from "axios";
-import { getAccessToken, liveServer, sendError } from "../utils/utils";
+import {
+  devServer,
+  getAccessToken,
+  liveServer,
+  sendError,
+} from "../utils/utils";
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -37,7 +42,7 @@ export const withdrawFunds = createAsyncThunk(
 export const depositFunds = createAsyncThunk(
   "trnx/depositFunds",
   async (formData) => {
-    const url = `${liveServer}/transaction/deposit`;
+    const url = `${devServer}/transaction/deposit`;
     const accessToken = getAccessToken();
     try {
       const response = axios.post(url, formData, {
@@ -54,7 +59,7 @@ export const depositFunds = createAsyncThunk(
 );
 
 export const getUserTrnxs = createAsyncThunk("trnx/getUserTrnxs", async () => {
-  const url = `${liveServer}/transaction`;
+  const url = `${devServer}/transaction`;
   const accessToken = getAccessToken();
   try {
     const response = await axios.get(url, {
@@ -63,10 +68,11 @@ export const getUserTrnxs = createAsyncThunk("trnx/getUserTrnxs", async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     sendError(error);
+    return;
   }
 });
 

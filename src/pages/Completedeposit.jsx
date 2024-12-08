@@ -29,6 +29,8 @@ const Completedeposit = ({ setActive }) => {
     (state) => state.trnx
   );
 
+  console.log(depositLoading);
+
   const copyToClipboard = (e, gateway) => {
     e.preventDefault();
 
@@ -146,11 +148,17 @@ const Completedeposit = ({ setActive }) => {
                 {!copy ? "Copy" : "Copied"}
               </button>
             </div>
-            <p className="text-xs font-light">
-              Always double check the wallet address to avoid accidentally
-              sending funds to the wrong address. Never copy and paste address
-              from your transaction history.
-            </p>
+            <div className="bg-green-50 p-2 rounded-sm text-xs font-light text-left flex flex-col gap-2">
+              <p>
+                Always double check the wallet address to avoid accidentally
+                sending funds to the wrong address. Never copy and paste address
+                from your transaction history.
+              </p>
+              <p>
+                Transaction will fail automatically if the complete amount is
+                not sent.
+              </p>
+            </div>
           </div>
 
           <div className="flex p-6 mb-5">

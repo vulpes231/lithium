@@ -1,11 +1,68 @@
 import React, { useEffect } from "react";
 import { MdSearch } from "react-icons/md";
+import { formatNumber, getAccessToken } from "../utils/utils";
+import { getUserTrnxs } from "../features/trnxSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { btc, usdt } from "../assets";
 
 const styles = {
   select: "bg-white text-slate-500",
 };
 
 const Transactions = ({ setActive }) => {
+  const dispatch = useDispatch();
+  const { userTrnxs } = useSelector((state) => state.trnx);
+  const accessToken = getAccessToken();
+
+  const myTrnxs =
+    userTrnxs &&
+    userTrnxs.map((trnx) => {
+      // console.log(trnx);
+      return (
+        <div
+          key={trnx._id}
+          className="bg-white flex justify-between p-4 items-center border rounded-sm"
+        >
+          <span className="flex items-center gap-3">
+            <img
+              src={trnx.gateway === "bitcoin" ? btc : usdt}
+              alt=""
+              className="w-[25px]"
+            />
+            <span>
+              <p className="capitalize font-medium text-xs whitespace-nowrap">
+                {trnx.gateway === "bitcoin"
+                  ? trnx.gateway
+                  : "USDT (BEP20 and ERC20)"}
+              </p>
+              <small className="font-light text-xs">{trnx.timeStamp}</small>
+            </span>
+          </span>
+          <span className="font-medium text-sm hidden sm:flex">
+            {trnx.desc}
+          </span>
+          <span
+            className={`${
+              trnx.status[0] === "pending"
+                ? "bg-yellow-500"
+                : trnx.status[0] === "completed"
+                ? "bg-green-500"
+                : "bg-red-500"
+            } text-xs hidden md:flex capitalize py-1 px-3 rounded-3xl text-white `}
+          >
+            {trnx.status[0]}
+          </span>
+          <span className="font-medium text-sm">{`${formatNumber(
+            trnx.amount
+          )} USD`}</span>
+        </div>
+      );
+    });
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getUserTrnxs());
+    }
+  }, [accessToken]);
   useEffect(() => {
     document.title = "Finance Hedge - Transactions";
     setActive("transactions");
@@ -65,8 +122,8 @@ const Transactions = ({ setActive }) => {
             </select>
           </div>
         </div>
-        <div className="bg-white w-full flex item-center justify-center p-6 border mb-24">
-          <p>No data found </p>
+        <div className="rounded-sm  flex flex-col">
+          {!userTrnxs ? <p> Data not found.</p> : myTrnxs}
         </div>
       </div>
     </section>
