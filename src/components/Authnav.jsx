@@ -4,6 +4,7 @@ import Authmenu from "./Authmenu";
 
 const Authnav = ({ toggle, handleToggle, userInfo }) => {
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <header className="text-slate-800 bg-white p-6">
       <nav className="flex justify-between items-center lg:px-6">
@@ -20,7 +21,7 @@ const Authnav = ({ toggle, handleToggle, userInfo }) => {
             1
           )}`}
         </button>
-        {showMenu && <Authmenu />}
+        {showMenu && <Authmenu close={setShowMenu} />}
       </nav>
     </header>
   );

@@ -25,7 +25,7 @@ const initialState = {
 export const createTicket = createAsyncThunk(
   "ticket/createTicket",
   async (formData) => {
-    const url = `${devServer}/ticket`;
+    const url = `${liveServer}/ticket`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.post(url, formData, {
@@ -44,7 +44,7 @@ export const createTicket = createAsyncThunk(
 export const getUserTickets = createAsyncThunk(
   "ticket/getUserTickets",
   async () => {
-    const url = `${devServer}/ticket`;
+    const url = `${liveServer}/ticket`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.get(url, {
@@ -63,7 +63,7 @@ export const getUserTickets = createAsyncThunk(
 export const getTicket = createAsyncThunk(
   "ticket/getTicket",
   async ({ ticketId }) => {
-    const url = `${devServer}/ticket/${ticketId}`;
+    const url = `${liveServer}/ticket/${ticketId}`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.get(url, {
@@ -82,7 +82,7 @@ export const getTicket = createAsyncThunk(
 export const replyTicket = createAsyncThunk(
   "ticket/replyTicket",
   async (formData) => {
-    const url = `${devServer}/ticket`;
+    const url = `${liveServer}/ticket`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.post(url, formData, {

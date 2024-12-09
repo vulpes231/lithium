@@ -25,7 +25,7 @@ export const getUserWallet = createAsyncThunk(
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      // console.log(response.data);
+
       return response.data;
     } catch (error) {
       sendError(error);

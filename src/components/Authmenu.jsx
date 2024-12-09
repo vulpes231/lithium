@@ -49,7 +49,7 @@ const Authmenu = ({ close }) => {
           ) : null;
         return (
           <Link
-            onClick={close}
+            onClick={() => close(false)}
             to={link.path}
             key={link.id}
             className="text-sm flex items-center gap-1 active:text-yellow-500"
@@ -59,9 +59,12 @@ const Authmenu = ({ close }) => {
           </Link>
         );
       })}
-      <span onClick={handleLogout} className="text-sm flex items-center gap-1">
+      <span
+        onClick={handleLogout}
+        className="text-sm flex items-center gap-1 cursor-pointer"
+      >
         <MdLogout />
-        <span>logout</span>
+        <button onClick={handleLogout}>logout</button>
       </span>
       {logoutLoading && <Logoutmodal />}
     </div>

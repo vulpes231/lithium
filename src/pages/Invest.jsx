@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAccessToken } from "../utils/utils";
 import { getPlans } from "../features/poolSlice";
+import Investmodal from "../components/invest/Investmodal";
 
 const styles = {
   span: "flex items-center justify-between",
@@ -12,6 +13,9 @@ const Invest = ({ setActive }) => {
   const { plans, investLoading, investError, investSuccess } = useSelector(
     (state) => state.pool
   );
+
+  const [planData, setPlanData] = useState(false);
+  const [investModal, setInvestModal] = useState(false);
 
   // console.log(plans);
   const myPlans =
@@ -52,7 +56,7 @@ const Invest = ({ setActive }) => {
             </span>
           </div>
           <button
-            onClick={(e) => handleSubmit(e, plan._id)}
+            onClick={(e) => handleSubmit(e, plan)}
             className="bg-green-600 text-white capitalize p-2 rounded-3xl font-semibold"
           >
             Invest now
@@ -64,6 +68,8 @@ const Invest = ({ setActive }) => {
   const handleSubmit = (e, data) => {
     e.preventDefault();
     console.log(data);
+    setPlanData(data);
+    setInvestModal(true);
   };
 
   const accesstoken = getAccessToken();
@@ -85,6 +91,7 @@ const Invest = ({ setActive }) => {
         </h3>
         <div className="flex flex-col md:flex-row gap-6 mb-24">{myPlans}</div>
       </div>
+      {investModal && <Investmodal data={planData} close={setInvestModal} />}
     </section>
   );
 };
