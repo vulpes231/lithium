@@ -13,13 +13,17 @@ import Profile from "./Profile";
 import Referrals from "./Referrals";
 import Signin from "./Signin";
 import Signup from "./Signup";
+import Support from "./Support";
 import Ticket from "./Ticket";
 import Transactions from "./Transactions";
 import Twofactor from "./Twofactor";
+import Usertickets from "./Usertickets";
 import Withdraw from "./Withdraw";
 
 export {
   Kyc,
+  Support,
+  Usertickets,
   Completedeposit,
   Twofactor,
   Ticket,

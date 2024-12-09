@@ -82,19 +82,19 @@ const Profile = ({ setActive }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-6 md:flex-row">
+          <div className="flex flex-col gap-6 md:w-[50%]">
             <div className={styler.div}>
               <h3 className="border-l-4 border-green-500 px-1 font-bold capitalize">
                 change password
               </h3>
               <Changepass />
             </div>
-            <div className={styler.div}>
+            {/* <div className={styler.div}>
               <h3 className="border-l-4 border-green-500 px-1 font-bold capitalize">
                 top up
               </h3>
               <Topup user={user} />
-            </div>
+            </div> */}
           </div>
         </div>
         {editModal && <Editmodal close={closeEditModal} />}

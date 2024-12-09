@@ -16,9 +16,11 @@ import {
   Referrals,
   Signin,
   Signup,
+  Support,
   Ticket,
   Transactions,
   Twofactor,
+  Usertickets,
   Withdraw,
 } from "./pages";
 import { Authnav, Footer, Navbar, Sidebar } from "./components";
@@ -106,6 +108,14 @@ const App = () => {
             element={<Referrals setActive={setActive} user={user} />}
           />
           <Route path="/ticket" element={<Ticket setActive={setActive} />} />
+          <Route
+            path="/userticket"
+            element={<Usertickets setActive={setActive} />}
+          />
+          <Route
+            path="/support/:ticketId"
+            element={<Support setActive={setActive} />}
+          />
           <Route
             path="/withdraw"
             element={<Withdraw setActive={setActive} />}

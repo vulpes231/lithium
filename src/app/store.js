@@ -9,6 +9,7 @@ import alertReducer from "../features/alertSlice";
 import verifyReducer from "../features/verifySlice";
 import poolReducer from "../features/poolSlice";
 import verifyAccountReducer from "../features/verifyAccountSlice";
+import ticketReducer from "../features/ticketSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     verify: verifyReducer,
     pool: poolReducer,
     verifyaccount: verifyAccountReducer,
+    ticket: ticketReducer,
   },
 });
 

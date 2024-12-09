@@ -65,6 +65,7 @@ const Deposithistory = ({ setActive }) => {
         </div>
       );
     });
+
   useEffect(() => {
     if (accessToken) {
       dispatch(getUserTrnxs());
