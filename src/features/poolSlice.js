@@ -35,7 +35,7 @@ export const getPlans = createAsyncThunk("pool/getPlans", async () => {
 export const investPlan = createAsyncThunk(
   "pool/investPlan",
   async (formData) => {
-    const url = `${devServer}/pool`;
+    const url = `${liveServer}/pool`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.post(url, formData, {
