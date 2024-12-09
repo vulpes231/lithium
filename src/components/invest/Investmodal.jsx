@@ -3,6 +3,8 @@ import { MdClose } from "react-icons/md";
 import { formatNumber, getAccessToken } from "../../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWallet } from "../../features/walletSlice";
+import { investPlan } from "../../features/poolSlice";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   wallet: "",
@@ -12,13 +14,17 @@ const initialState = {
 
 const Investmodal = ({ data, close }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userWallet } = useSelector((state) => state.wallet);
 
   const accessToken = getAccessToken();
 
-  // Correct useState hook usage
   const [form, setForm] = useState(initialState);
   const [error, setError] = useState("");
+
+  const { investLoading, investError, investSuccess } = useSelector(
+    (state) => state.pool
+  );
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -37,7 +43,19 @@ const Investmodal = ({ data, close }) => {
     if (form.amount < data.minAmount) {
       setError(`Minimum amount is ${formatNumber(data.minAmount)} USD`);
     }
+
+    if (!form.wallet) {
+      setError(`Select a wallet!`);
+    }
+
+    dispatch(investPlan(investData));
   };
+
+  useEffect(() => {
+    if (investError) {
+      setError(investError);
+    }
+  }, [investError]);
 
   useEffect(() => {
     let timeout;
@@ -49,6 +67,17 @@ const Investmodal = ({ data, close }) => {
     }
     return () => clearTimeout(timeout);
   }, [error]);
+
+  useEffect(() => {
+    let timeout;
+    if (investSuccess) {
+      timeout = 3000;
+      setTimeout(() => {
+        navigate("/pools");
+      }, timeout);
+    }
+    return () => clearTimeout(timeout);
+  }, [investSuccess]);
 
   useEffect(() => {
     if (accessToken) {
@@ -111,6 +140,9 @@ const Investmodal = ({ data, close }) => {
             </span>
           </div>
           {error && <p className="text-xs font-medium text-red-500">{error}</p>}
+          {investSuccess && (
+            <p className="text-xs font-medium text-green-500">Success.</p>
+          )}
         </div>
 
         <hr />

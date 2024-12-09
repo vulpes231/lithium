@@ -52,7 +52,7 @@ const Pools = ({ setActive }) => {
         <div className="mb-24">
           <span className="flex justify-between items-center p-6">
             <h3 className="font-semibold capitalize">active pools (0)</h3>
-            <small className="text-green-600 underline capitalize flex items-center">
+            <small className="text-green-600 underline capitalize flex items-center cursor-pointer">
               view all <MdArrowForward />
             </small>
           </span>

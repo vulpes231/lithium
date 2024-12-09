@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAccessToken, liveServer, sendError } from "../utils/utils";
+import {
+  devServer,
+  getAccessToken,
+  liveServer,
+  sendError,
+} from "../utils/utils";
 import axios from "axios";
 
 const initialState = {
@@ -30,7 +35,7 @@ export const getPlans = createAsyncThunk("pool/getPlans", async () => {
 export const investPlan = createAsyncThunk(
   "pool/investPlan",
   async (formData) => {
-    const url = `${liveServer}/pool`;
+    const url = `${devServer}/pool`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.post(url, formData, {
