@@ -3,7 +3,8 @@ import { MdSearch } from "react-icons/md";
 import { formatNumber, getAccessToken } from "../utils/utils";
 import { getUserTrnxs } from "../features/trnxSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { btc, usdt } from "../assets";
+import { btc, stake, usdt } from "../assets";
+import { GrStakeholder } from "react-icons/gr";
 
 const styles = {
   select: "bg-white text-slate-500",
@@ -25,15 +26,23 @@ const Transactions = ({ setActive }) => {
         >
           <span className="flex items-center gap-3">
             <img
-              src={trnx.gateway === "bitcoin" ? btc : usdt}
+              src={
+                trnx.gateway === "bitcoin"
+                  ? btc
+                  : trnx.gateway === "usdt"
+                  ? usdt
+                  : stake
+              }
               alt=""
               className="w-[25px]"
             />
             <span>
               <p className="capitalize font-medium text-xs whitespace-nowrap">
                 {trnx.gateway === "bitcoin"
-                  ? trnx.gateway
-                  : "USDT (BEP20 and ERC20)"}
+                  ? "bitcoin"
+                  : trnx.gateway === "usdt"
+                  ? "USDT (BEP20 and ERC20)"
+                  : "Invest pool"}
               </p>
               <small className="font-light text-xs">{trnx.timeStamp}</small>
             </span>

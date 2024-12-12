@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowForward } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { getAccessToken } from "../utils/utils";
+import { getInvestments } from "../features/poolSlice";
+import { useDispatch, useSelector } from "react-redux";
+import Showinvestments from "../components/invest/Showinvestments";
 
 const styles = {
   invest: "flex flex-col gap-4",
@@ -9,10 +13,38 @@ const styles = {
 };
 
 const Pools = ({ setActive }) => {
+  const dispatch = useDispatch();
+  const accessToken = getAccessToken();
+
+  const { investments } = useSelector((state) => state.pool);
+
+  const [totalInvestment, setTotalInvestment] = useState(0);
+  const [totalProfit, setTotalProfit] = useState(0);
+
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getInvestments());
+    }
+  }, [accessToken, dispatch]);
+
   useEffect(() => {
     document.title = "Finance Hedge - Invest Pools";
     setActive("pools");
-  }, []);
+
+    if (investments && investments.length > 0) {
+      const totalInvested = investments.reduce(
+        (acc, investment) => acc + (investment.amount || 0),
+        0
+      );
+      const totalYield = investments.reduce(
+        (acc, investment) => acc + (investment.profit || 0),
+        0
+      );
+
+      setTotalInvestment(totalInvested);
+      setTotalProfit(totalYield);
+    }
+  }, [investments, setActive]);
 
   return (
     <section className="w-full p-6 font-[Poppins] bg-slate-100 h-full overflow-auto">
@@ -27,14 +59,18 @@ const Pools = ({ setActive }) => {
           <div className="flex justify-between items-center bg-white p-6 shadow-sm rounded-sm w-full h-[160px] capitalize lg:w-[65%]">
             <span className={`${styles.invest} `}>
               <h3 className="font-semibold text-sm">total invest</h3>
-              <p className="font-semibold text-xl text-green-600">$0.00</p>
+              <p className="font-semibold text-xl text-green-600">
+                ${totalInvestment.toFixed(2)}
+              </p>
               <Link to={"/invest"} className={`bg-slate-950 ${styles.button}`}>
                 stake <MdArrowForward />
               </Link>
             </span>
             <span className={`${styles.invest} flex justify-end items-end`}>
               <h3 className="font-semibold text-sm">total profit</h3>
-              <p className="font-semibold text-xl text-green-600">$0.00</p>
+              <p className="font-semibold text-xl text-green-600">
+                ${totalProfit.toFixed(2)}
+              </p>
               <Link
                 to={"/withdraw"}
                 className={`bg-green-600 ${styles.button}`}
@@ -45,19 +81,27 @@ const Pools = ({ setActive }) => {
           </div>
           <div className="md:col-span-2 bg-white flex items-center justify-center shadow-sm rounded-sm p-6 w-full h-[160px]">
             <h3 className="text-xl md:text-3xl font-medium capitalize">
-              No Investment found yet
+              {investments && investments.length
+                ? `${investments.length} open positions`
+                : " No Investment found yet"}
             </h3>
           </div>
         </div>
         <div className="mb-24">
           <span className="flex justify-between items-center p-6">
-            <h3 className="font-semibold capitalize">active pools (0)</h3>
+            <h3 className="font-semibold capitalize">
+              active pools {`(${investments && investments.length})`}
+            </h3>
             <small className="text-green-600 underline capitalize flex items-center cursor-pointer">
               view all <MdArrowForward />
             </small>
           </span>
-          <div className="bg-white p-6 flex items-center justify-center">
-            <p>No data found</p>
+          <div className="flex  flex-col gap-6 bg-white">
+            {investments && investments.length > 0 ? (
+              <Showinvestments data={investments} />
+            ) : (
+              <p>No data found</p>
+            )}
           </div>
         </div>
       </div>

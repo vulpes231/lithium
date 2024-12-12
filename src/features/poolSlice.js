@@ -14,6 +14,9 @@ const initialState = {
   investLoading: false,
   investError: false,
   investSuccess: false,
+  getInvestLoading: false,
+  getInvestError: false,
+  investments: false,
 };
 
 export const getPlans = createAsyncThunk("pool/getPlans", async () => {
@@ -35,7 +38,7 @@ export const getPlans = createAsyncThunk("pool/getPlans", async () => {
 export const investPlan = createAsyncThunk(
   "pool/investPlan",
   async (formData) => {
-    const url = `${liveServer}/pool`;
+    const url = `${liveServer}/pool/invest`;
     const accessToken = getAccessToken();
     try {
       const response = await axios.post(url, formData, {
@@ -44,6 +47,26 @@ export const investPlan = createAsyncThunk(
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      return response.data;
+    } catch (error) {
+      sendError(error);
+    }
+  }
+);
+
+export const getInvestments = createAsyncThunk(
+  "pool/getInvestments",
+  async () => {
+    const url = `${liveServer}/pool/invest`;
+    const accessToken = getAccessToken();
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       sendError(error);
@@ -90,6 +113,21 @@ const poolSlice = createSlice({
         state.investLoading = false;
         state.investError = action.error.message;
         state.investSuccess = false;
+      });
+
+    builder
+      .addCase(getInvestments.pending, (state) => {
+        state.getInvestLoading = false;
+      })
+      .addCase(getInvestments.fulfilled, (state, action) => {
+        state.getInvestLoading = false;
+        state.getInvestError = false;
+        state.investments = action.payload.investments;
+      })
+      .addCase(getInvestments.rejected, (state, action) => {
+        state.getInvestLoading = false;
+        state.getInvestError = action.error.message;
+        state.investments = false;
       });
   },
 });

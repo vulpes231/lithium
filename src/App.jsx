@@ -81,7 +81,7 @@ const App = () => {
       </div>
 
       <div
-        className={token ? "lg:ml-[290px] font-[Poppins] h-screen " : "lg:ml-0"}
+        className={token ? "lg:ml-[320px] font-[Poppins] h-screen " : "lg:ml-0"}
       >
         <Routes>
           <Route path="/" element={<Landing />} />

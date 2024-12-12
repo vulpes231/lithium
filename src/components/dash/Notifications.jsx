@@ -6,7 +6,11 @@ import { GoPasskeyFill } from "react-icons/go";
 const Notifications = ({ user }) => {
   return (
     <div className="flex flex-col gap-6 text-slate-800">
-      <div className="border border-yellow-500 p-4 rounded-lg flex flex-col md:flex-row md:items-center gap-4 bg-white">
+      <div
+        className={` ${
+          !user.twofa ? "flex" : "hidden"
+        } border border-yellow-500 p-4 rounded-lg flex flex-col md:flex-row md:items-center gap-4 bg-white`}
+      >
         <GoPasskeyFill className="w-6 h-6 text-yellow-500" />
         <span>
           <h5 className="font-semibold">2FA Authentication</h5>

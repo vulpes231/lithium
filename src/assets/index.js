@@ -1,6 +1,7 @@
-import logo from "./coinxtra.png";
+import logo from "./fh.png";
 import btc from "./bitcoin.png";
 import bnb from "./bnb.png";
+import stake from "./stake.png";
 import doge from "./dogecoin.png";
 import eth from "./ethereum.png";
 import ltc from "./litecoin.png";
@@ -15,6 +16,7 @@ import tradetwo from "./tradetwo.jpg";
 
 export {
   logo,
+  stake,
   btc,
   bnb,
   doge,

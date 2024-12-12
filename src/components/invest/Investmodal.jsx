@@ -42,11 +42,15 @@ const Investmodal = ({ data, close }) => {
 
     if (form.amount < data.minAmount) {
       setError(`Minimum amount is ${formatNumber(data.minAmount)} USD`);
+      return;
     }
 
     if (!form.wallet) {
       setError(`Select a wallet!`);
+      return;
     }
+
+    // console.log(investData);
 
     dispatch(investPlan(investData));
   };
@@ -74,6 +78,7 @@ const Investmodal = ({ data, close }) => {
       timeout = 3000;
       setTimeout(() => {
         navigate("/pools");
+        window.location.reload();
       }, timeout);
     }
     return () => clearTimeout(timeout);
@@ -151,7 +156,7 @@ const Investmodal = ({ data, close }) => {
             onClick={handleSubmit}
             className="bg-green-600 text-white p-2 w-[60px] capitalize"
           >
-            yes
+            {!investLoading ? "yes" : "wait..."}
           </button>
           <button
             onClick={() => close(false)}
